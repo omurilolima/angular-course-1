@@ -6,7 +6,7 @@
 </div>
 
 <div class="courses">
-  @for (
+  <!-- @for (
     course of courses;
     track course.id;
     let index = $index;
@@ -29,5 +29,13 @@
     />
   } @empty {
     <h1>No courses available!</h1>
-  }
+  } -->
+
+  <course-card
+    *ngFor="let course of courses; index as i; first as isFirst; last as isLast"
+    (courseSelected)="onCourseSelected($event)"
+    [course]="course"
+    [index]="i + 1"
+    [class.is-first]="isFirst"
+  ></course-card>
 </div>
