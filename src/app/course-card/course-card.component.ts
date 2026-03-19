@@ -1,13 +1,14 @@
 import { Component, Input, Output } from "@angular/core";
-import { COURSES } from "src/db-data";
+import { NgIf } from "@angular/common";
 import { Course } from "../model/course";
 import { EventEmitter } from "@angular/core";
 
 @Component({
   selector: "course-card",
-  imports: [],
+  standalone: true,
+  imports: [NgIf],
   templateUrl: "./course-card.component.html",
-  styleUrl: "./course-card.component.css",
+  styleUrls: ["./course-card.component.css"],
 })
 export class CourseCardComponent {
   @Input({
@@ -20,6 +21,10 @@ export class CourseCardComponent {
 
   @Output()
   courseSelected = new EventEmitter<Course>();
+
+  isImageVisible() {
+    return this.course && this.course.iconUrl;
+  }
 
   onCourseViewed() {
     console.log("Course card component - button clicked");
